@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SUBDCOURSE</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SUBDCOURSE.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="categoryRow">
+                    <a asp-page="/Booking">
+                        <div id="table-1" class="categoryItem" onmouseenter="categoryShow(1)" onmouseleave="categoryClose(1)">
+                            <div class="categoryText">Заказы</div>
+                            <div class="categoryUnderline"></div>
+                        </div>
+                    </a>
+                    <a asp-page="/Clients">
+                        <div id="table-2" class="categoryItem" onmouseenter="categoryShow(2)" onmouseleave="categoryClose(2)">
+                            <div class="categoryText">Клиенты</div>
+                            <div class="categoryUnderline"></div>
+                        </div>
+                    </a>
+                    <a asp-page="/Apartaments">
+                        <div id="table-3" class="categoryItem" onmouseenter="categoryShow(3)" onmouseleave="categoryClose(3)">
+                            <div class="categoryText">Апартаменты</div>
+                            <div class="categoryUnderline"></div>
+                        </div>
+                    </a>
+
+                    <a asp-page="/Services">
+                        <div id="table-4" class="categoryItem" onmouseenter="categoryShow(4)" onmouseleave="categoryClose(4)">
+                            <div class="categoryText">Сервисы</div>
+                            <div class="categoryUnderline"></div>
+                        </div>
+                    </a>
+
+                    <a asp-page="/Tariffs">
+                        <div id="table-5" class="categoryItem" onmouseenter="categoryShow(5)" onmouseleave="categoryClose(5)">
+                            <div class="categoryText">Тарифы</div>
+                            <div class="categoryUnderline"></div>
+                        </div>
+                    </a>
+                    <a asp-page="/Facilities">
+                        <div id="table-6" class="categoryItem" onmouseenter="categoryShow(6)" onmouseleave="categoryClose(6)">
+                            <div class="categoryText">Удобства</div>
+                            <div class="categoryUnderline"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @*    <div class="container">
+    <main role="main" class="pb-3">*@
+    @RenderBody()
+    @*        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2022 - SUBDCOURSE - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </div>
+    </footer>*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+@*<div class="container">
+    <a class="navbar-brand" asp-area="" asp-page="/Index">SUBDCOURSE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+            </li>
+        </ul>
+    </div>
+</div>*@

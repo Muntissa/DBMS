@@ -1,0 +1,50 @@
+﻿@page
+@model SUBDCOURSE.Pages.ApartamentsModel
+@{
+}
+<div class="text-center">
+    <h2 class="text-center">Апартаменты</h2>
+    <table class="info__table">
+        <tr class="info__table-row">
+            <th class="info__table-column">№</th>
+            <th class="info__table-column">Фото</th>
+            <th class="info__table-column">Название</th>
+            <th class="info__table-column">Номер</th>
+            <th class="info__table-column">Площадь</th>
+            <th class="info__table-column">Удобства</th>
+            <th class="info__table-column">Включенные услуги</th>
+            <th class="info__table-column">Цена</th>
+        </tr>
+        @foreach (var apartament in Model.Apartaments)
+        {
+            <tr class="info__table-row">
+                <td class="info__table-column">@apartament.Id</td>
+                <td class="info__table-column">
+                    <div class="info__table-column-avatar">
+                        <img src="@apartament.ImageUrl" alt="" class="info__table-column-avatar-image">
+                    </div>
+                </td>
+                <td class="info__table-column">@apartament.Tariff.Name</td>
+                <td class="info__table-column">@apartament.Number</td>
+                <td class="info__table-column">@apartament.Area кв.м.</td>
+
+                <td class="info__table-column">
+                    @foreach (var pair in Model.ApartamentFacilities.Where(pair => pair.Apartament.Id == apartament.Id))
+                    {
+                        @pair.Facility.Name
+                        @Html.Raw("<br/>")
+                    }
+                </td>
+
+                <td class="info__table-column">
+                    @foreach (var pair in Model.IncludedServices.Where(pair => pair.Apartament.Id == apartament.Id))
+                    {
+                        @pair.Service.Name
+                        @Html.Raw("<br/>")
+                    }
+                </td>
+                <td class="info__table-column">@apartament.Price руб.</td>
+            </tr>
+        }
+    </table>
+</div>

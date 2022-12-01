@@ -1,0 +1,40 @@
+﻿@page
+@model SUBDCOURSE.Pages.BookingModel
+@{
+}
+<div class="text-center">
+
+    <h2 class="text-center">Заказы</h2>
+    <table class="info__table">
+        <tr class="info__table-row">
+            <th class="info__table-column">№</th>
+            <th class="info__table-column">Номер апартаментов</th>
+            <th class="info__table-column">Клиент</th>
+            <th class="info__table-column">Начальная дата</th>
+            <th class="info__table-column">Конечная дата</th>
+            <th class="info__table-column">Заказные услуги</th>
+            <th class="info__table-column">Сумма заказа</th>
+            <th class="info__table-column">По телефону</th>
+        </tr>
+        @foreach (var booking in Model.Bookings)
+        {
+            <tr class="info__table-row">
+                <td class="info__table-column">@booking.Id</td>
+                <td class="info__table-column">@booking.Apartament.Number</td>
+                <td class="info__table-column">@booking.Client.SecondName @booking.Client.FirstName @booking.Client.ThirdName</td>
+                <td class="info__table-column">@booking.FirstDate</td>
+                <td class="info__table-column">@booking.EndDate</td>
+                <td class="info__table-column">
+                    @foreach (var pair in Model.BookingServices.Where(pair => pair.Booking.Id == booking.Id))
+                    {
+                        @pair.Service.Name
+                        @Html.Raw("<br/>")
+                    }
+                </td>
+                <td class="info__table-column">@booking.SumPrice</td>
+                <td class="info__table-column">@(booking.Reservation ? "Да" : "Нет")</td>
+            </tr>
+        }
+    </table>
+
+</div>

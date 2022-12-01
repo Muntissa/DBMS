@@ -1,0 +1,29 @@
+﻿@page
+@model SUBDCOURSE.Pages.ClientsModel
+@{
+}
+<div class="text-center">
+
+    <h2 class="text-center">Клиенты</h2>
+    <table class="info__table">
+        <tr class="info__table-row">
+            <th class="info__table-column">№</th>
+            <th class="info__table-column">Фамилия</th>
+            <th class="info__table-column">Имя</th>
+            <th class="info__table-column">Отчество</th>
+            <th class="info__table-column">Номер телефона</th>
+            <th class="info__table-column">E-mail</th>
+        </tr>
+        @foreach (var client in Model.Clients)
+        {
+            <tr class="info__table-row">
+                <td class="info__table-column">@client.Id</td>
+                <td class="info__table-column">@client.SecondName</td>
+                <td class="info__table-column">@client.FirstName</td>
+                <td class="info__table-column">@client.ThirdName</td>
+                <td class="info__table-column">@client.Number</td>
+                <td class="info__table-column">@client.Email</td>
+            </tr>
+        }
+    </table>
+</div>

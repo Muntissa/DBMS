@@ -1,0 +1,25 @@
+﻿@page
+@model SUBDCOURSE.Pages.ServicesModel
+@{
+}
+<div class="text-center">
+
+    <h2 class="text-center">Услуги</h2>
+    <table class="info__table">
+        <tr class="info__table-row">
+            <th class="info__table-column">№</th>
+            <th class="info__table-column">Название услуги</th>
+            <th class="info__table-column">Описание услуги</th>
+            <th class="info__table-column">Цена услуги</th>
+        </tr>
+        @foreach (var service in Model.Services)
+        {
+            <tr class="info__table-row">
+                <td class="info__table-column">@service.Id</td>
+                <td class="info__table-column">@service.Name</td>
+                <td class="info__table-column">@service.Description</td>
+                <td class="info__table-column">@service.Price</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,27 @@
+﻿@page
+@model SUBDCOURSE.Pages.FacilitiesModel
+@{
+}
+<div class="text-center">
+
+    <h2 class="text-center">Удобства</h2>
+
+    <form class="itemReviewForm" method="post">
+        <input name="id" class="itemInputName" placeholder="Введите айди удаляемого удобства" required />
+        <button asp-page-handler="Auth" id="submit" class="itemButtonReview">Удалить</button>
+    </form>
+
+    <table class="info__table">
+        <tr class="info__table-row">
+            <th class="info__table-column">№</th>
+            <th class="info__table-column">Название удобства</th>
+        </tr>
+        @foreach (var facility in Model.Facilities)
+        {
+            <tr class="info__table-row">
+                <td class="info__table-column">@facility.Id</td>
+                <td class="info__table-column">@facility.Name</td>
+            </tr>
+        }
+    </table>
+</div>
