@@ -79,27 +79,6 @@ namespace DBMS.Api
 			return result;
 		}
 
-		public static void InContext(Action<SqlConnection> action)
-		{
-			using var connection = new SqlConnection(ConnectionString);
-
-			if (connection.State == ConnectionState.Closed)
-				connection.Open();
-
-			try
-			{
-				action(connection);
-			}
-			catch (Exception ex)
-			{
-				throw;
-			}
-			finally
-			{
-				connection.Close();
-			}
-		}
-
 		private static DataTable LoadSingleData<T>(int id) where T : BaseEntity
 		{
 			var result = new DataTable();
@@ -125,6 +104,27 @@ namespace DBMS.Api
 
 			return $"insert into {type.Name.ToLower()} ({string.Join(", ", valuedNames.Keys)}) values ({string.Join(", ", valuedNames.Select(s => s.Value is null ? "null" : $"'{s.Value}'"))})";
 		}
+
+        public static void InContext(Action<SqlConnection> action)
+        {
+            using var connection = new SqlConnection(ConnectionString);
+
+            if (connection.State == ConnectionState.Closed)
+                connection.Open();
+
+            try
+            {
+                action(connection);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
         static void UpdateSum(int id)
         {
@@ -155,6 +155,18 @@ namespace DBMS.Api
             InContext((connection) =>
             {
                 using var cmd = new SqlCommand("UpdateSumPriceBookingWithServices", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
+                cmd.ExecuteNonQuery();
+            });
+        }
+
+        static void UpdateSumPriceBookingWithoutServices(int id)
+        {
+            InContext((connection) =>
+            {
+                using var cmd = new SqlCommand("UpdateSumPriceBookingWithoutServices", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
