@@ -4,9 +4,14 @@ namespace DBMS.Api.Entities
 {
     public class Service : BaseEntity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Price { get; set; }
+        [EntityPropertyDesc("service_name")]
+        public string? Name { get; set; }
+
+        [EntityPropertyDesc("service_description")]
+        public string? Description { get; set; }
+
+        [EntityPropertyDesc("service_price")]
+        public int? Price { get; set; }
 
         public Service(DataRow row) : base(row) 
         {
@@ -14,5 +19,7 @@ namespace DBMS.Api.Entities
             Description = row["service_description"].ToString();
             Price = Convert.ToInt32(row["service_price"]);
         }
+
+        public Service() { }
     }
 }

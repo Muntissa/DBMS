@@ -8,6 +8,7 @@ namespace DBMS.Api.Entities
 
         [EntityPropertyDesc("tarrif_id")]
         public int TariffId { get; set; }
+
         public Tariff? Tariff { get { if (_tariff is null) _tariff = Context.LoadSingle<Tariff>(TariffId); return _tariff; } }
 
 

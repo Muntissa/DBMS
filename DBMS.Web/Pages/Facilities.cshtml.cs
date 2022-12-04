@@ -20,9 +20,14 @@ namespace SUBDCOURSE.Pages
         {
         }
 
-        public void OnPostAuth(int id) 
+        public void OnPostDelete(int id) 
         {
             Context.Delete<Facility>(id);
+        }
+        public void OnPostInsert(string name)
+        {
+            var facility = new Facility() { Name = name };
+            Context.Insert(facility);
         }
     }
 }

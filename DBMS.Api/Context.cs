@@ -31,6 +31,15 @@ namespace DBMS.Api
 			});
 		}
 
+		public static void Insert(object entity)
+		{
+			InContext((connection) =>
+			{
+				var command = new SqlCommand(GetSqlInsertCommand(entity), connection);
+				command.ExecuteNonQuery();
+			});
+		}
+
 		public static T? LoadSingle<T>(int id) where T : BaseEntity { return (T?)Activator.CreateInstance(typeof(T), LoadSingleData<T>(id).Rows[0]); }
 
 		public static IEnumerable<T> LoadEntities<T>() where T : BaseEntity
@@ -41,18 +50,6 @@ namespace DBMS.Api
 				listEntities.Add((T?)Activator.CreateInstance(typeof(T), dataRow));
 
 			return listEntities.Where(e => e is not null);
-		}
-
-		static void UpdateSum(int id)
-		{
-			InContext((context) =>
-			{
-				using var cmd = new SqlCommand("SetSum", context);
-				cmd.CommandType = CommandType.StoredProcedure;
-
-				cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
-				cmd.ExecuteNonQuery();
-			});
 		}
 
 		public static void UpdateSumList(IEnumerable<Booking> list)
@@ -128,5 +125,41 @@ namespace DBMS.Api
 
 			return $"insert into {type.Name.ToLower()} ({string.Join(", ", valuedNames.Keys)}) values ({string.Join(", ", valuedNames.Select(s => s.Value is null ? "null" : $"'{s.Value}'"))})";
 		}
-	}
+
+        static void UpdateSum(int id)
+        {
+            InContext((connection) =>
+            {
+                using var cmd = new SqlCommand("SetSum", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
+                cmd.ExecuteNonQuery();
+            });
+        }
+
+		static void UpdatePriceApartament(int id)
+		{
+			InContext((connection) =>
+			{
+				using var cmd = new SqlCommand("UpdatePriceApartaments", connection);
+				cmd.CommandType = CommandType.StoredProcedure;
+
+				cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
+				cmd.ExecuteNonQuery();
+			});
+		}
+
+        static void UpdateSumPriceBookingWithServices(int id)
+        {
+            InContext((connection) =>
+            {
+                using var cmd = new SqlCommand("UpdateSumPriceBookingWithServices", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
+                cmd.ExecuteNonQuery();
+            });
+        }
+    }
 }

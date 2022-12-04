@@ -5,21 +5,25 @@
 <div class="text-center">
 
     <h2 class="text-center">Тарифы</h2>
-    <table class="info__table">
-        <tr class="info__table-row">
-            <th class="info__table-column">№</th>
-            <th class="info__table-column">Название тарифа</th>
-            <th class="info__table-column">Описание тарифа</th>
-            <th class="info__table-column">Цена тарифа</th>
-        </tr>
-        @foreach (var tariff in Model.Tariffs)
-        {
+    <table id="myTable" class="info__table">
+        <thead>
             <tr class="info__table-row">
-                <td class="info__table-column">@tariff.Id</td>
-                <td class="info__table-column">@tariff.Name</td>
-                <td class="info__table-column">@tariff.Description</td>
-                <td class="info__table-column">@tariff.Price</td>
+                <th class="info__table-column">№</th>
+                <th class="info__table-column">Название тарифа</th>
+                <th class="info__table-column">Описание тарифа</th>
+                <th class="info__table-column">Цена тарифа</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var tariff in Model.Tariffs)
+            {
+                <tr class="info__table-row">
+                    <td class="info__table-column">@tariff.Id</td>
+                    <td class="info__table-column">@tariff.Name</td>
+                    <td class="info__table-column">@tariff.Description</td>
+                    <td class="info__table-column">@tariff.Price</td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>

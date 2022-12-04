@@ -6,22 +6,31 @@
 
     <h2 class="text-center">Удобства</h2>
 
+    <table id="myTable" class="info__table">
+        <thead>
+            <tr class="info__table-row">
+                <th class="info__table-column">№</th>
+                <th class="info__table-column">Название удобства</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var facility in Model.Facilities)
+            {
+                <tr class="info__table-row">
+                    <td class="info__table-column">@facility.Id</td>
+                    <td class="info__table-column">@facility.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
     <form class="itemReviewForm" method="post">
         <input name="id" class="itemInputName" placeholder="Введите айди удаляемого удобства" required />
-        <button asp-page-handler="Auth" id="submit" class="itemButtonReview">Удалить</button>
+        <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
     </form>
 
-    <table class="info__table">
-        <tr class="info__table-row">
-            <th class="info__table-column">№</th>
-            <th class="info__table-column">Название удобства</th>
-        </tr>
-        @foreach (var facility in Model.Facilities)
-        {
-            <tr class="info__table-row">
-                <td class="info__table-column">@facility.Id</td>
-                <td class="info__table-column">@facility.Name</td>
-            </tr>
-        }
-    </table>
+    <form class="itemReviewForm" method="post">
+        <input name="name" class="itemInputName" placeholder="Название" required />
+        <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
+    </form>
 </div>

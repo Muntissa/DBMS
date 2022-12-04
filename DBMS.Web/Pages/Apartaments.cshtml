@@ -4,7 +4,8 @@
 }
 <div class="text-center">
     <h2 class="text-center">Апартаменты</h2>
-    <table class="info__table">
+    <table id ="myTable"class="info__table">
+        <thead>
         <tr class="info__table-row">
             <th class="info__table-column">№</th>
             <th class="info__table-column">Фото</th>
@@ -15,6 +16,8 @@
             <th class="info__table-column">Включенные услуги</th>
             <th class="info__table-column">Цена</th>
         </tr>
+        </thead>
+        <tbody
         @foreach (var apartament in Model.Apartaments)
         {
             <tr class="info__table-row">
@@ -46,5 +49,6 @@
                 <td class="info__table-column">@apartament.Price руб.</td>
             </tr>
         }
+        </tbody>
     </table>
 </div>

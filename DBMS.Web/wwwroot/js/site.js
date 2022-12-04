@@ -1,4 +1,10 @@
-﻿function categoryShow(id) {
+﻿$(document).ready(function() {
+    $('#myTable').DataTable({
+        "paging": true
+    });
+});
+
+function categoryShow(id) {
     let test = document.getElementById("table-" + id);
     test.classList.remove("hidden");
     test.classList.add("anim");
@@ -10,3 +16,4 @@ function categoryClose(id) {
     test.classList.add("hidden");
     console.log(4);
 }
+
