@@ -32,7 +32,7 @@
                     <td class="info__table-column">@apartament.Area кв.м.</td>
 
                     <td class="info__table-column">
-                        @foreach (var pair in Model.ApartamentFacilities.Where(pair => pair.Apartament.Id == apartament.Id))
+                        @foreach (var pair in Model.ApartamentFacilities.Where(pair => pair.Apartament is not null && pair.Apartament.Id == apartament.Id))
                         {
                             @pair.Facility.Name
                             @Html.Raw("<br/>")
@@ -40,7 +40,7 @@
                     </td>
 
                     <td class="info__table-column">
-                        @foreach (var pair in Model.IncludedServices.Where(pair => pair.Apartament.Id == apartament.Id))
+                        @foreach (var pair in Model.IncludedServices.Where(pair => pair.Apartament is not null && pair.Apartament.Id == apartament.Id))
                         {
                             @pair.Service.Name
                             @Html.Raw("<br/>")
@@ -58,29 +58,75 @@
 
 <div class="forms_blocks">
     <form class="itemReviewForm" method="post">
-        <input name="tariff_id" class="itemInputName" placeholder="ID тарифа" required />
+        Выберите тариф:
+        <select id="tariff_id" class="select_option" name="tariff_id" required>
+            <option></option>
+            @foreach (var s in Model.Tariffs)
+            {
+                <option>@s.Id @s.Name</option>
+            }
+        </select>
         <input name="number" class="itemInputName" placeholder="Введите номер" required />
         <input name="area" class="itemInputName" placeholder="Введите площадь" required />
+
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
 
     <form class="itemReviewForm" method="post">
-        <input name="id" class="itemInputName" placeholder="ID апартамента" required />
+        Выберите апартаменты:
+        <select id="apartament_id" class="select_option" name="apartament_id" required>
+            <option></option>
+            @foreach (var s in Model.Apartaments)
+            {
+                <option>@s.Id</option>
+            }
+        </select>
         <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
     </form>
 </div>
 
-<br/>
+<br />
 
 <div class="forms_blocks">
     <form class="itemReviewForm" method="post">
-        <input name="apartament_id" class="itemInputName" placeholder="Введите ID апартамента" required />
-        <input name="facility_id" class="itemInputName" placeholder="Введите ID удобства" required />
+        Выберите ID апартаментов:
+        <select id="apartament_id" class="select_option" name="apartament_id" required>
+            <option></option>
+            @foreach (var s in Model.Apartaments)
+            {
+                <option>@s.Id</option>
+            }
+        </select>
+
+        Выберите удобство:
+        <select id="facility_id" class="select_option" name="facility_id" required>
+            <option></option>
+            @foreach (var s in Model.Facilities)
+            {
+                <option>@s.Id @s.Name</option>
+            }
+        </select>
         <button asp-page-handler="InsertFacility" id="submit" class="itemButtonReview">Добавить удобство</button>
     </form>
+
     <form class="itemReviewForm" method="post">
-        <input name="apartament_id" class="itemInputName" placeholder="Введите ID апартамента" required />
-        <input name="service_id" class="itemInputName" placeholder="Введите ID сервиса" required />
+        Выберите ID апартаментов:
+        <select id="apartament_id" class="select_option" name="apartament_id" required>
+            <option></option>
+            @foreach (var s in Model.Apartaments)
+            {
+                <option>@s.Id</option>
+            }
+        </select>
+
+        Выберите сервис:
+        <select id="service_id" class="select_option" name="service_id" required>
+            <option></option>
+            @foreach (var s in Model.Services)
+            {
+                <option>@s.Id @s.Name</option>
+            }
+        </select>
         <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить сервис</button>
     </form>
 </div>

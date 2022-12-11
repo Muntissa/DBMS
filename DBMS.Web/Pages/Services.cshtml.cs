@@ -16,14 +16,14 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Service> Services = Context.LoadEntities<Service>();
 
-        public void OnPostUpdate(int id, string name, string description, int price) 
+        public void OnPostUpdate(int service_id, string name, string description, int price) 
         {
-            Context.Update<Service>(id, name, description, price);
+            Context.Update<Service>(service_id, name, description, price);
         }
 
-        public void OnPostDelete(int id)
+        public void OnPostDelete(int service_id)
         {
-            Context.Delete<Service>(id);
+            Context.Delete<Service>(service_id);
         }
         public void OnPostInsert(string name, string description, int price)
         {

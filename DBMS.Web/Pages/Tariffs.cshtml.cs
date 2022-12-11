@@ -24,11 +24,13 @@ namespace SUBDCOURSE.Pages
                 Description = description,
                 Price = price
             });
+            Tariffs = Context.LoadEntities<Tariff>();
         }
 
-        public void OnPostDelete(int id)
+        public void OnPostDelete(int tariff_id)
         {
-            Context.Delete<Client>(id);
+            Context.Delete<Client>(tariff_id);
+            Tariffs = Context.LoadEntities<Tariff>();
         }
     }
 }

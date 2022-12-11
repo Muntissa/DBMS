@@ -37,7 +37,14 @@
     </form>
 
     <form class="itemReviewForm" method="post">
-        <input name="name" class="itemInputName" placeholder="ID тарифа" required />
+        Выберите тариф:
+        <select id="tariff_id" class="select_option" name="tariff_id" required>
+            <option></option>
+            @foreach (var s in Model.Tariffs)
+            {
+                <option>@s.Id</option>
+            }
+        </select>
         <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
     </form>
 </div>

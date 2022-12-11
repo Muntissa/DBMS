@@ -13,40 +13,49 @@ namespace SUBDCOURSE.Pages
             _logger = logger;
         }
 
-        public IEnumerable<IncludedServices> IncludedServices = Context.LoadEntities<IncludedServices>();
         public IEnumerable<Apartament> Apartaments = Context.LoadEntities<Apartament>();
+        public IEnumerable<Tariff> Tariffs = Context.LoadEntities<Tariff>();
+        public IEnumerable<Facility> Facilities = Context.LoadEntities<Facility>();
+        public IEnumerable<Service> Services = Context.LoadEntities<Service>();
+        public IEnumerable<IncludedServices> IncludedServices = Context.LoadEntities<IncludedServices>();
         public IEnumerable<ApartamentFacilities> ApartamentFacilities = Context.LoadEntities<ApartamentFacilities>();
+
 
         public void OnPostUpdateSum()
         {
             Context.UpdateApartamentsPrices(Apartaments);
+            Apartaments = Context.LoadEntities<Apartament>();
         }
 
-        public void OnPostInsert(int tariff_id, int number, int area)
+        public void OnPostInsert(string tariff_id, int number, int area)
         {
             Context.Insert(new Apartament()
             {
-                TariffId = tariff_id,
+                TariffId = Convert.ToInt32(tariff_id.Split(" ").First()),
                 Number = number,
                 ImageUrl = "./image/HotelPic1.jpg",
                 Area = area,
                 Price = 0
             });
+            Apartaments = Context.LoadEntities<Apartament>();
         }
 
-        public void OnPostDelete(int id)
+        public void OnPostDelete(int apartament_id)
         {
-            Context.Delete<Apartament>(id);
+            Context.Delete<Apartament>(apartament_id);
+            Apartaments = Context.LoadEntities<Apartament>();
         }
 
-        public void OnPostInsertFacility(int apartament_id, int facility_id)
+        public void OnPostInsertFacility(int apartament_id, string facility_id)
         {
-            Context.Insert(new ApartamentFacilities { ApartamentId = apartament_id, FacilityId = facility_id });
+            Context.Insert(new ApartamentFacilities { ApartamentId = apartament_id, FacilityId = Convert.ToInt32(facility_id.Split(" ").First()) });
+            ApartamentFacilities = Context.LoadEntities<ApartamentFacilities>();
         }
 
-        public void OnPostInsertService(int apartament_id, int service_id)
+        public void OnPostInsertService(int apartament_id, string service_id)
         {
-            Context.Insert(new IncludedServices { ApartamentId = apartament_id, ServiceId = service_id });
+            Context.Insert(new IncludedServices { ApartamentId = apartament_id, ServiceId = Convert.ToInt32(service_id.Split(" ").First()) });
+            IncludedServices = Context.LoadEntities<IncludedServices>();
         }
     }
 }

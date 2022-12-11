@@ -86,7 +86,13 @@ namespace DBMS.Api
             });
         }
 
-        public static T? LoadSingle<T>(int id) where T : BaseEntity { return (T?)Activator.CreateInstance(typeof(T), LoadSingleData<T>(id).Rows[0]); }
+        public static T? LoadSingle<T>(int id) where T : BaseEntity 
+        {
+            var singleData = LoadSingleData<T>(id);
+            if (singleData.Rows.Count == 0)
+                return null;
+            return (T?)Activator.CreateInstance(typeof(T), singleData.Rows[0]); 
+        }
 
         public static IEnumerable<T> LoadEntities<T>() where T : BaseEntity
         {
@@ -144,7 +150,7 @@ namespace DBMS.Api
         {
             InContext((connection) =>
             {
-                using var cmd = new SqlCommand("UpdatePriceApartaments", connection);
+                using var cmd = new SqlCommand("UpdatePriceApartament", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;

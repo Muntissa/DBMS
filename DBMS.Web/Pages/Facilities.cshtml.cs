@@ -16,14 +16,16 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Facility> Facilities = Context.LoadEntities<Facility>();
 
-        public void OnPostDelete(int id) 
+        public void OnPostDelete(int id)
         {
             Context.Delete<Facility>(id);
+            Facilities = Context.LoadEntities<Facility>();
         }
 
         public void OnPostInsert(string name)
         {
             Context.Insert(new Facility() { Name = name });
+            Facilities = Context.LoadEntities<Facility>();
         }
     }
 }

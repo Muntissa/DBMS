@@ -15,9 +15,10 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Client> Clients = Context.LoadEntities<Client>();
 
-        public void OnPostDelete(int id)
+        public void OnPostDelete(int client_id)
         {
-            Context.Delete<Client>(id);
+            Context.Delete<Client>(client_id);
+            Clients = Context.LoadEntities<Client>();
         }
         public void OnPostInsert(string secondname, string firstname, string thirdname, string number, string email)
         {
@@ -29,6 +30,7 @@ namespace SUBDCOURSE.Pages
                 Number = number,
                 Email = email
             });
+            Clients = Context.LoadEntities<Client>();
         }
     }
 }
