@@ -4,51 +4,83 @@
 }
 <div class="text-center">
     <h2 class="text-center">Апартаменты</h2>
-    <table id ="myTable"class="info__table">
+    <table id="myTable" class="info__table">
         <thead>
-        <tr class="info__table-row">
-            <th class="info__table-column">№</th>
-            <th class="info__table-column">Фото</th>
-            <th class="info__table-column">Название</th>
-            <th class="info__table-column">Номер</th>
-            <th class="info__table-column">Площадь</th>
-            <th class="info__table-column">Удобства</th>
-            <th class="info__table-column">Включенные услуги</th>
-            <th class="info__table-column">Цена</th>
-        </tr>
-        </thead>
-        <tbody
-        @foreach (var apartament in Model.Apartaments)
-        {
             <tr class="info__table-row">
-                <td class="info__table-column">@apartament.Id</td>
-                <td class="info__table-column">
-                    <div class="info__table-column-avatar">
-                        <img src="@apartament.ImageUrl" alt="" class="info__table-column-avatar-image">
-                    </div>
-                </td>
-                <td class="info__table-column">@apartament.Tariff.Name</td>
-                <td class="info__table-column">@apartament.Number</td>
-                <td class="info__table-column">@apartament.Area кв.м.</td>
-
-                <td class="info__table-column">
-                    @foreach (var pair in Model.ApartamentFacilities.Where(pair => pair.Apartament.Id == apartament.Id))
-                    {
-                        @pair.Facility.Name
-                        @Html.Raw("<br/>")
-                    }
-                </td>
-
-                <td class="info__table-column">
-                    @foreach (var pair in Model.IncludedServices.Where(pair => pair.Apartament.Id == apartament.Id))
-                    {
-                        @pair.Service.Name
-                        @Html.Raw("<br/>")
-                    }
-                </td>
-                <td class="info__table-column">@apartament.Price руб.</td>
+                <th class="info__table-column">№</th>
+                <th class="info__table-column">Фото</th>
+                <th class="info__table-column">Название</th>
+                <th class="info__table-column">Номер</th>
+                <th class="info__table-column">Площадь</th>
+                <th class="info__table-column">Удобства</th>
+                <th class="info__table-column">Включенные услуги</th>
+                <th class="info__table-column">Цена</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var apartament in Model.Apartaments)
+            {
+                <tr class="info__table-row">
+                    <td class="info__table-column">@apartament.Id</td>
+                    <td class="info__table-column">
+                        <div class="info__table-column-avatar">
+                            <img src="@apartament.ImageUrl" alt="" class="info__table-column-avatar-image">
+                        </div>
+                    </td>
+                    <td class="info__table-column">@apartament.Tariff.Name</td>
+                    <td class="info__table-column">@apartament.Number</td>
+                    <td class="info__table-column">@apartament.Area кв.м.</td>
+
+                    <td class="info__table-column">
+                        @foreach (var pair in Model.ApartamentFacilities.Where(pair => pair.Apartament.Id == apartament.Id))
+                        {
+                            @pair.Facility.Name
+                            @Html.Raw("<br/>")
+                        }
+                    </td>
+
+                    <td class="info__table-column">
+                        @foreach (var pair in Model.IncludedServices.Where(pair => pair.Apartament.Id == apartament.Id))
+                        {
+                            @pair.Service.Name
+                            @Html.Raw("<br/>")
+                        }
+                    </td>
+                    <td class="info__table-column">@apartament.Price руб.</td>
+                </tr>
+            }
         </tbody>
     </table>
+    <form method="post">
+        <button asp-page-handler="UpdateSum" id="submit" class="itemButtonReview">Обновить сумму номера</button>
+    </form>
+</div>
+
+<div class="forms_blocks">
+    <form class="itemReviewForm" method="post">
+        <input name="tariff_id" class="itemInputName" placeholder="ID тарифа" required />
+        <input name="number" class="itemInputName" placeholder="Введите номер" required />
+        <input name="area" class="itemInputName" placeholder="Введите площадь" required />
+        <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
+    </form>
+
+    <form class="itemReviewForm" method="post">
+        <input name="id" class="itemInputName" placeholder="ID апартамента" required />
+        <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
+    </form>
+</div>
+
+<br/>
+
+<div class="forms_blocks">
+    <form class="itemReviewForm" method="post">
+        <input name="apartament_id" class="itemInputName" placeholder="Введите ID апартамента" required />
+        <input name="facility_id" class="itemInputName" placeholder="Введите ID удобства" required />
+        <button asp-page-handler="InsertFacility" id="submit" class="itemButtonReview">Добавить удобство</button>
+    </form>
+    <form class="itemReviewForm" method="post">
+        <input name="apartament_id" class="itemInputName" placeholder="Введите ID апартамента" required />
+        <input name="service_id" class="itemInputName" placeholder="Введите ID сервиса" required />
+        <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить сервис</button>
+    </form>
 </div>

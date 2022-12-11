@@ -20,8 +20,6 @@ namespace SUBDCOURSE.Pages
 
         public void OnPostAuth()
         {
-            IEnumerable<Booking> bookings = Context.LoadEntities<Booking>();
-            Context.UpdateSumList(bookings);
         }
     }
 }

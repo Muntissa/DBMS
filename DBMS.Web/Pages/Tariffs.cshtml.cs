@@ -16,8 +16,19 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Tariff> Tariffs = Context.LoadEntities<Tariff>();
 
-        public void OnGet()
+        public void OnPostInsert(string name, string description, int price)
         {
+            Context.Insert(new Tariff()
+            {
+                Name = name,
+                Description = description,
+                Price = price
+            });
+        }
+
+        public void OnPostDelete(int id)
+        {
+            Context.Delete<Client>(id);
         }
     }
 }

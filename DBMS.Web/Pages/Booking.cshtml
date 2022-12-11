@@ -41,4 +41,32 @@
         </tbody>
     </table>
 
+    <br />
+    <form method="post">
+        <button asp-page-handler="UpdateSum" id="submit" class="itemButtonReview">Обновить сумму заказа</button>
+    </form>
+</div>
+
+<div class="forms_blocks">
+
+    <form class="itemReviewForm" method="post">
+        <input name="apartament_id" class="itemInputName" placeholder="ID апартаментов" required />
+        <input name="client_id" class="itemInputName" placeholder="ID клиента" required />
+        <input name="firstdate" class="itemInputName" placeholder="Начальная дата" required />
+        <input name="enddate" class="itemInputName" placeholder="Конечная дата" required />
+        <input name="reservation" class="itemInputName" placeholder="По телефону" required />
+        <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
+    </form>
+
+    <form class="itemReviewForm" method="post">
+        <input name="id" class="itemInputName" placeholder="Введите ID заказа" required />
+        <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
+    </form>
+
+    <form class="itemReviewForm" method="post">
+        <input name="booking_id" class="itemInputName" placeholder="Введите ID заказа" required />
+        <input name="service_id" class="itemInputName" placeholder="Введите ID сервиса" required />
+        <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить сервис</button>
+    </form>
+
 </div>

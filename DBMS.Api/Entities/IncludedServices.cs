@@ -7,12 +7,12 @@ namespace DBMS.Api.Entities
         private Apartament? _apartament;
 
         [EntityPropertyDesc("apartament_id")]
-        public int ApartamentId;
+        public int ApartamentId { get; set; }
 
         private Service? _service;
 
         [EntityPropertyDesc("serivce_id")]
-        public int ServiceId;
+        public int ServiceId { get; set; }
 
         public Apartament? Apartament { get { if (_apartament is null) _apartament = Context.LoadSingle<Apartament>(ApartamentId); return _apartament; } }
         public Service? Service{ get { if (_service is null) _service = Context.LoadSingle<Service>(ServiceId); return _service; } }

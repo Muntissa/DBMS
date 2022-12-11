@@ -15,9 +15,20 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Client> Clients = Context.LoadEntities<Client>();
 
-        public void OnGet()
+        public void OnPostDelete(int id)
         {
-
+            Context.Delete<Client>(id);
+        }
+        public void OnPostInsert(string secondname, string firstname, string thirdname, string number, string email)
+        {
+            Context.Insert(new Client()
+            {
+                SecondName = secondname,
+                FirstName = firstname,
+                ThirdName = thirdname,
+                Number = number,
+                Email = email
+            });
         }
     }
 }

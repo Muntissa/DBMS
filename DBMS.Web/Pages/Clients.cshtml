@@ -31,3 +31,19 @@
         </tbody>
     </table>
 </div>
+
+<div class="forms_blocks">
+    <form class="itemReviewForm" method="post">
+        <input name="secondname" class="itemInputName" placeholder="Фамилия" required />
+        <input name="firstname" class="itemInputName" placeholder="Имя" required />
+        <input name="thirdname" class="itemInputName" placeholder="Отчество" required />
+        <input name="number" class="itemInputName" placeholder="Телефон" required />
+        <input name="email" class="itemInputName" placeholder="E-mail" required />
+        <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
+    </form>
+
+    <form class="itemReviewForm" method="post">
+        <input name="id" class="itemInputName" placeholder="ID клиента" required />
+        <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Удалить</button>
+    </form>
+</div>

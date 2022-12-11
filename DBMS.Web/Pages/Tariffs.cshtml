@@ -27,3 +27,17 @@
         </tbody>
     </table>
 </div>
+
+<div class="forms_blocks">
+    <form class="itemReviewForm" method="post">
+        <input name="name" class="itemInputName" placeholder="Название" required />
+        <input name="description" class="itemInputName" placeholder="Описание" required />
+        <input name="price" class="itemInputName" placeholder="Цена" required />
+        <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
+    </form>
+
+    <form class="itemReviewForm" method="post">
+        <input name="name" class="itemInputName" placeholder="ID тарифа" required />
+        <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
+    </form>
+</div>

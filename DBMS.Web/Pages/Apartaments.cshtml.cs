@@ -17,8 +17,36 @@ namespace SUBDCOURSE.Pages
         public IEnumerable<Apartament> Apartaments = Context.LoadEntities<Apartament>();
         public IEnumerable<ApartamentFacilities> ApartamentFacilities = Context.LoadEntities<ApartamentFacilities>();
 
-        public void OnGet()
+        public void OnPostUpdateSum()
         {
+            Context.UpdateApartamentsPrices(Apartaments);
+        }
+
+        public void OnPostInsert(int tariff_id, int number, int area)
+        {
+            Context.Insert(new Apartament()
+            {
+                TariffId = tariff_id,
+                Number = number,
+                ImageUrl = "./image/HotelPic1.jpg",
+                Area = area,
+                Price = 0
+            });
+        }
+
+        public void OnPostDelete(int id)
+        {
+            Context.Delete<Apartament>(id);
+        }
+
+        public void OnPostInsertFacility(int apartament_id, int facility_id)
+        {
+            Context.Insert(new ApartamentFacilities { ApartamentId = apartament_id, FacilityId = facility_id });
+        }
+
+        public void OnPostInsertService(int apartament_id, int service_id)
+        {
+            Context.Insert(new IncludedServices { ApartamentId = apartament_id, ServiceId = service_id });
         }
     }
 }

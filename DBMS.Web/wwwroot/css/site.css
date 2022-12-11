@@ -4,6 +4,8 @@
     src: url("../fonts/philosopher-bold.ttf");
 }
 
+
+
 html {
     font-size: 14px;
 }
@@ -32,7 +34,6 @@ body {
     color: #444 !important;
     border-radius: 5px !important;
     width: 100% !important;
-
 }
 
 thead {
@@ -47,7 +48,7 @@ thead {
     border-bottom: 1px solid #C5C7CD !important;
 }
 
-.info__table-column{
+.info__table-column {
     text-align: center !important;
     font-family: 'Philosopher' !important;
     font-style: normal !important;
@@ -122,25 +123,25 @@ a {
     cursor: pointer;
 }
 
-.categoryItem.active .categoryUnderline {
-    width: 100%;
-    height: 2px;
-    animation: none !important;
-}
+    .categoryItem.active .categoryUnderline {
+        width: 100%;
+        height: 2px;
+        animation: none !important;
+    }
 
-.categoryItem.anim:not(.active) .categoryUnderline {
-    width: 100%;
-    height: 2px;
-    background: black;
-    animation-duration: 0.5s;
-    animation-name: openUnderline;
-}
+    .categoryItem.anim:not(.active) .categoryUnderline {
+        width: 100%;
+        height: 2px;
+        background: black;
+        animation-duration: 0.5s;
+        animation-name: openUnderline;
+    }
 
-.categoryItem.hidden:not(.active) .categoryUnderline {
-    width: 0%;
-    animation-duration: 0.5s;
-    animation-name: closeUnderline;
-}
+    .categoryItem.hidden:not(.active) .categoryUnderline {
+        width: 0%;
+        animation-duration: 0.5s;
+        animation-name: closeUnderline;
+    }
 
 @keyframes openUnderline {
     from {
@@ -162,17 +163,26 @@ a {
     }
 }
 
+.forms_blocks {
+    display: flex;
+    justify-content: space-around;
+    height: auto;
+}
+
 .itemReviewForm {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    border: dashed;
 }
+
 
 .itemInputName {
     border-radius: 5px;
     border: 3px black solid;
-    width: 200px;
+    width: 250px;
     height: 40px;
+    margin: 10px;
 }
 
 .itemButtonReview {
@@ -184,5 +194,6 @@ a {
     align-items: center;
     color: white;
     font-size: 20px;
-    margin-top: 10px;
+    margin: 10px;
 }
+
