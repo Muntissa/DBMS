@@ -25,7 +25,7 @@ namespace DBMS.Api.Entities
 
 
         [EntityPropertyDesc("apartament_price")]
-        public int Price { get; set; }
+        public int? Price { get; set; }
 
         public Apartament(DataRow row) : base(row)
         {

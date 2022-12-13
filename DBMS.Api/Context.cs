@@ -44,7 +44,7 @@ namespace DBMS.Api
             return result;
         }
 
-        private static DataTable LoadSingleData<T>(int id) where T : BaseEntity
+        static DataTable LoadSingleData<T>(int id) where T : BaseEntity
         {
             var result = new DataTable();
 
@@ -86,12 +86,12 @@ namespace DBMS.Api
             });
         }
 
-        public static T? LoadSingle<T>(int id) where T : BaseEntity 
+        public static T? LoadSingle<T>(int id) where T : BaseEntity
         {
             var singleData = LoadSingleData<T>(id);
             if (singleData.Rows.Count == 0)
                 return null;
-            return (T?)Activator.CreateInstance(typeof(T), singleData.Rows[0]); 
+            return (T?)Activator.CreateInstance(typeof(T), singleData.Rows[0]);
         }
 
         public static IEnumerable<T> LoadEntities<T>() where T : BaseEntity
@@ -104,11 +104,9 @@ namespace DBMS.Api
             return listEntities.Where(e => e is not null);
         }
 
-        public static void UpdateApartamentsPrices(IEnumerable<Apartament> list)
-        {
-            foreach (var apartament in list)
-                Context.UpdatePriceApartament(apartament.Id);
-        }
+        public static void UpdateApartamentsPrices(int id) { Context.UpdatePriceApartament(id); }
+
+        public static void UpdateApartamentsPricesWithServices(int id) { Context.UpdatePriceApartamentWithServices(id); }
 
         public static void UpdateBookingPriceWithServices(int id) { Context.UpdateSumPriceBookingWithServices(id); }
 
@@ -151,6 +149,18 @@ namespace DBMS.Api
             InContext((connection) =>
             {
                 using var cmd = new SqlCommand("UpdatePriceApartament", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;
+                cmd.ExecuteNonQuery();
+            });
+        }
+
+        static void UpdatePriceApartamentWithServices(int id)
+        {
+            InContext((connection) =>
+            {
+                using var cmd = new SqlCommand("UpdatePriceApartamentWithServices", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@identificator", SqlDbType.Int).Value = id;

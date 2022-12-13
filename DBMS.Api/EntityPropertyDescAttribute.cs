@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using DBMS.Api.Entities;
+using System.Reflection;
 
 namespace DBMS.Api
 {

@@ -23,7 +23,13 @@ namespace SUBDCOURSE.Pages
 
         public void OnPostUpdateSum()
         {
-            Context.UpdateApartamentsPrices(Apartaments);
+            foreach (var apartament in Apartaments)
+            {
+                if (IncludedServices.Any(pair => pair.ApartamentId == apartament.Id))
+                    Context.UpdateApartamentsPricesWithServices(apartament.Id);
+                else 
+                    Context.UpdateApartamentsPrices(apartament.Id);
+            }
             Apartaments = Context.LoadEntities<Apartament>();
         }
 
