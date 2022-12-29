@@ -8,7 +8,7 @@
     <table id="myTable" class="info__table">
         <thead>
             <tr class="info__table-row">
-                <th class="info__table-column">№</th>
+                <th class="info__table-column">Номер клиента</th>
                 <th class="info__table-column">Фамилия</th>
                 <th class="info__table-column">Имя</th>
                 <th class="info__table-column">Отчество</th>
@@ -34,7 +34,7 @@
 
 <div class="forms_blocks">
     <form class="itemReviewForm" method="post">
-        <input name="secondname" class="itemInputName" placeholder="Фамилия" required />
+        <input type="text" name="secondname" class="itemInputName" placeholder="Фамилия" required />
         <input name="firstname" class="itemInputName" placeholder="Имя" required />
         <input name="thirdname" class="itemInputName" placeholder="Отчество" required />
         <input name="number" class="itemInputName" placeholder="Телефон" required />
@@ -43,7 +43,7 @@
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите ID клиента:
+        Выберите клиента:
         <select id="client_id" class="select_option" name="client_id" required>
             <option></option>
             @foreach (var s in Model.Clients)

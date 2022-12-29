@@ -31,7 +31,7 @@ namespace SUBDCOURSE.Pages
             Bookings = Context.LoadEntities<Booking>();
         }
 
-        public void OnPostInsert(string apartament_id, string client_id, string firstdate, string enddate, int reservation)
+        public void OnPostInsert(string apartament_id, string client_id, string firstdate, string enddate, bool reservation)
         {
             Context.Insert(new Booking()
             {
@@ -39,7 +39,7 @@ namespace SUBDCOURSE.Pages
                 ClientId = Convert.ToInt32(client_id.Split(" ").First()),
                 FirstDate = Convert.ToDateTime(firstdate),
                 EndDate = Convert.ToDateTime(enddate),
-                Reservation = Convert.ToBoolean(reservation),
+                Reservation = reservation,
                 SumPrice = 0
             });
             Bookings = Context.LoadEntities<Booking>();

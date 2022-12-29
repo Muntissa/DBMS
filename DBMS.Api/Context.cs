@@ -6,7 +6,7 @@ namespace DBMS.Api
 {
     public static class Context
     {
-        public static string ConnectionString = $"Data Source={Environment.MachineName};Initial Catalog=university;Integrated Security=True";
+        public static string ConnectionString = $"Data Source={Environment.MachineName};Initial Catalog=CourseDB;Integrated Security=True";
 
         public static void InContext(Action<SqlConnection> action)
         {

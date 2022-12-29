@@ -19,11 +19,14 @@ namespace SUBDCOURSE.Pages
         public void OnPostUpdate(int service_id, string name, string description, int price) 
         {
             Context.Update<Service>(service_id, name, description, price);
+            Services = Context.LoadEntities<Service>();
         }
 
         public void OnPostDelete(int service_id)
         {
             Context.Delete<Service>(service_id);
+            Services = Context.LoadEntities<Service>();
+
         }
         public void OnPostInsert(string name, string description, int price)
         {
@@ -33,6 +36,7 @@ namespace SUBDCOURSE.Pages
                 Description = description,
                 Price = price
             });
+            Services = Context.LoadEntities<Service>();
         }
     }
 }

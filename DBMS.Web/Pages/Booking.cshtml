@@ -8,7 +8,7 @@
     <table id="myTable" class="info__table">
         <thead>
             <tr class="info__table-row">
-                <th class="info__table-column">№</th>
+                <th class="info__table-column">Номер заказа</th>
                 <th class="info__table-column">Номер апартаментов</th>
                 <th class="info__table-column">Клиент</th>
                 <th class="info__table-column">Начальная дата</th>
@@ -50,7 +50,7 @@
 <div class="forms_blocks">
 
     <form class="itemReviewForm" method="post">
-        Выберите ID апартаментов:
+        Выберите апартаменты:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
             @foreach (var s in Model.Apartaments)
@@ -59,23 +59,25 @@
             }
         </select>
 
-        Выберите ID клиента:
+        Выберите клиента:
         <select id="client_id" class="select_option" name="client_id" required>
             <option></option>
             @foreach (var s in Model.Clients)
             {
-                <option>@s.Id @s.SecondName @s.SecondName @s.ThirdName</option>
+                <option>@s.Id @s.SecondName @s.FirstName @s.ThirdName</option>
             }
         </select>
 
-        <input name="firstdate" class="itemInputName" placeholder="Начальная дата" required />
-        <input name="enddate" class="itemInputName" placeholder="Конечная дата" required />
-        <input name="reservation" class="itemInputName" placeholder="По телефону" required />
+        <input type="date" name="firstdate" class="itemInputName" placeholder="Начальная дата" required />
+        <input type="date" name="enddate" class="itemInputName" placeholder="Конечная дата" required />
+        
+        Резерв по телефону:
+        <input type="checkbox" name="reservation" class="itemInputName" id="reservation"/>
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите ID заказа:
+        Выберите номер заказа:
         <select id="booking_id" class="select_option" name="booking_id" required>
             <option></option>
             @foreach (var s in Model.Bookings)
@@ -87,7 +89,7 @@
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите ID заказа:
+        Выберите номер заказа:
         <select id="booking_id" class="select_option" name="booking_id" required>
             <option></option>
             @foreach (var s in Model.Bookings)
@@ -96,7 +98,7 @@
             }
         </select>
 
-        Выберите сервис:
+        Выберите номер сервиса:
         <select id="service_id" class="select_option" name="service_id" required>
             <option></option>
             @foreach (var s in Model.Services)

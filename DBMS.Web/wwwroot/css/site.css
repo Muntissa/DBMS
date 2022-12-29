@@ -23,6 +23,8 @@ html {
 
 body {
     margin-bottom: 60px;
+    overflow-x:hidden;
+    padding: 0 30px;
 }
 
 .container {
@@ -167,22 +169,27 @@ a {
     display: flex;
     justify-content: space-around;
     height: auto;
+    margin-top: 20px;
 }
 
 .itemReviewForm {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: dashed;
+    background-color: #fff;
+    box-shadow: 0 0 15px #0006;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 
 .itemInputName {
-    border-radius: 5px;
     border: 3px black solid;
     width: 250px;
     height: 40px;
     margin: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
 .select_option {

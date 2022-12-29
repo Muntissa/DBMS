@@ -9,8 +9,8 @@
             <tr class="info__table-row">
                 <th class="info__table-column">№</th>
                 <th class="info__table-column">Фото</th>
-                <th class="info__table-column">Название</th>
-                <th class="info__table-column">Номер</th>
+                <th class="info__table-column">Название тарифа</th>
+                <th class="info__table-column">Номер апартаментов</th>
                 <th class="info__table-column">Площадь</th>
                 <th class="info__table-column">Удобства</th>
                 <th class="info__table-column">Включенные услуги</th>
@@ -66,8 +66,8 @@
                 <option>@s.Id @s.Name</option>
             }
         </select>
-        <input name="number" class="itemInputName" placeholder="Введите номер" required />
-        <input name="area" class="itemInputName" placeholder="Введите площадь" required />
+        <input type="number" name="number" class="itemInputName" placeholder="Введите номер" required />
+        <input type="number" name="area" class="itemInputName" placeholder="Введите площадь" required />
 
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
@@ -89,7 +89,7 @@
 
 <div class="forms_blocks">
     <form class="itemReviewForm" method="post">
-        Выберите ID апартаментов:
+        Выберите апартаменты:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
             @foreach (var s in Model.Apartaments)
@@ -110,7 +110,7 @@
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите ID апартаментов:
+        Выберите апартаменты:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
             @foreach (var s in Model.Apartaments)
