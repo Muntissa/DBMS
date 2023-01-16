@@ -11,3 +11,8 @@
 
 # Используемые технологии
 C# Asp.Net Razor Pages, JavaScript datatables.net для менеджемента тейблов в хтмл.
+
+# Экспорт/Импорт БД
+База данных находится на верхнем уровне проекта с расширением .bacpac
+Экспорт: Microsoft SQL SMS -> ПКМ по БД -> Tasks -> Export Data-tier Application.
+Импорт: Microsoft SQL SMS -> ПКМ по Databases -> Import Data-tier Application.
