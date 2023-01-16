@@ -21,7 +21,7 @@
                     <td class="info__table-column">@service.Id</td>
                     <td class="info__table-column">@service.Name</td>
                     <td class="info__table-column">@service.Description</td>
-                    <td class="info__table-column">@service.Price</td>
+                    <td class="info__table-column">@service.Price руб.</td>
                 </tr>
             }
         </tbody>
@@ -34,12 +34,12 @@
     <form class="itemReviewForm" method="post">
         <input name="name" class="itemInputName" placeholder="Название" required />
         <input name="description" class="itemInputName" placeholder="Описание" required />
-        <input name="price" class="itemInputName" placeholder="Цена" required />
+        <input type="text" onkeypress='validate(event)' name="price" class="itemInputName" placeholder="Цена (руб.)" required />
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите ID сервиса:
+        Выберите номер услуги:
         <select id="service_id" class="select_option" name="service_id" required>
             <option></option>
             @foreach (var s in Model.Services)
@@ -47,19 +47,19 @@
                 <option>@s.Id</option>
             }
         </select>
-        <input name="name" class="itemInputName" placeholder="Введите название" required />
-        <input name="description" class="itemInputName" placeholder="Введите описание" required />
-        <input name="price" class="itemInputName" placeholder="Введите цену" required />
+        <input name="name" class="itemInputName" placeholder="Введите новое название" required />
+        <input name="description" class="itemInputName" placeholder="Введите новое описание" required />
+        <input type="number" name="price" class="itemInputName" placeholder="Введите новую цену (руб.)" required />
         <button asp-page-handler="Update" id="submit" class="itemButtonReview">Изменить</button>
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите ID сервиса:
+        Выберите услугу:
         <select id="service_id" class="select_option" name="service_id" required>
             <option></option>
             @foreach (var s in Model.Services)
             {
-                <option>@s.Id</option>
+                <option>@s.Name</option>
             }
         </select>
         <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>

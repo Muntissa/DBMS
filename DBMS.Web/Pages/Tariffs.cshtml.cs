@@ -27,9 +27,9 @@ namespace SUBDCOURSE.Pages
             Tariffs = Context.LoadEntities<Tariff>();
         }
 
-        public void OnPostDelete(int tariff_id)
+        public void OnPostDelete(string tariff_id)
         {
-            Context.Delete<Client>(tariff_id);
+            Context.Delete<Tariff>(Tariffs.Where(tariff => tariff.Name.Trim() == tariff_id).Select(tariff => tariff.Id).First());
             Tariffs = Context.LoadEntities<Tariff>();
         }
     }

@@ -7,7 +7,7 @@
     <table id="myTable" class="info__table">
         <thead>
             <tr class="info__table-row">
-                <th class="info__table-column">№</th>
+                <th class="info__table-column">Номер апартаментов</th>
                 <th class="info__table-column">Фото</th>
                 <th class="info__table-column">Название тарифа</th>
                 <th class="info__table-column">Номер апартаментов</th>
@@ -51,9 +51,9 @@
             }
         </tbody>
     </table>
-    <form method="post">
+@*    <form method="post">
         <button asp-page-handler="UpdateSum" id="submit" class="itemButtonReview">Обновить сумму номера</button>
-    </form>
+    </form>*@
 </div>
 
 <div class="forms_blocks">
@@ -63,7 +63,7 @@
             <option></option>
             @foreach (var s in Model.Tariffs)
             {
-                <option>@s.Id @s.Name</option>
+                <option>@s.Name</option>
             }
         </select>
         <input type="number" name="number" class="itemInputName" placeholder="Введите номер" required />
@@ -73,7 +73,7 @@
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите апартаменты:
+        Выберите номер апартаментов:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
             @foreach (var s in Model.Apartaments)
@@ -89,7 +89,7 @@
 
 <div class="forms_blocks">
     <form class="itemReviewForm" method="post">
-        Выберите апартаменты:
+        Выберите номер апартаментов:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
             @foreach (var s in Model.Apartaments)
@@ -103,14 +103,14 @@
             <option></option>
             @foreach (var s in Model.Facilities)
             {
-                <option>@s.Id @s.Name</option>
+                <option><strong>@s.Name</strong></option>
             }
         </select>
         <button asp-page-handler="InsertFacility" id="submit" class="itemButtonReview">Добавить удобство</button>
     </form>
 
     <form class="itemReviewForm" method="post">
-        Выберите апартаменты:
+        Выберите номер апартаментов:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
             @foreach (var s in Model.Apartaments)
@@ -119,14 +119,14 @@
             }
         </select>
 
-        Выберите сервис:
+        Выберите услугу:
         <select id="service_id" class="select_option" name="service_id" required>
             <option></option>
             @foreach (var s in Model.Services)
             {
-                <option>@s.Id @s.Name</option>
+                <option>@s.Name | Цена: @(s.Price / 2)</option>
             }
         </select>
-        <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить сервис</button>
+        <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить услугу</button>
     </form>
 </div>

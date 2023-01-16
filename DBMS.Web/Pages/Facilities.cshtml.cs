@@ -16,9 +16,9 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Facility> Facilities = Context.LoadEntities<Facility>();
 
-        public void OnPostDelete(int id)
+        public void OnPostDelete(string facility_id)
         {
-            Context.Delete<Facility>(id);
+            Context.Delete<Facility>(Facilities.Where(facility => facility.Name.Trim() == facility_id).Select(facility => facility.Id).First());
             Facilities = Context.LoadEntities<Facility>();
         }
 

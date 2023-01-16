@@ -15,9 +15,10 @@ namespace SUBDCOURSE.Pages
 
         public IEnumerable<Client> Clients = Context.LoadEntities<Client>();
 
-        public void OnPostDelete(int client_id)
+        public void OnPostDelete(string client_id)
         {
-            Context.Delete<Client>(client_id);
+            var clientSplit = client_id.Split(" ");
+            Context.Delete<Client>(Convert.ToInt32(Clients.Where(client => client.SecondName.Trim() == clientSplit[0] && client.FirstName.Trim() == clientSplit[1] && client.ThirdName.Trim() == clientSplit[2]).Select(client => client.Id).First()));
             Clients = Context.LoadEntities<Client>();
         }
         public void OnPostInsert(string secondname, string firstname, string thirdname, string number, string email)

@@ -22,9 +22,9 @@ namespace SUBDCOURSE.Pages
             Services = Context.LoadEntities<Service>();
         }
 
-        public void OnPostDelete(int service_id)
+        public void OnPostDelete(string service_id)
         {
-            Context.Delete<Service>(service_id);
+            Context.Delete<Service>(Services.Where(service => service.Name.Trim() == service_id).Select(service => service.Id).First());
             Services = Context.LoadEntities<Service>();
 
         }

@@ -8,9 +8,9 @@ namespace DBMS.Api
 	/// </summary>
 	public class EntityPropertyDescAttribute : Attribute
 	{
-		public EntityPropertyDescAttribute(string dbName, bool isPk = false)
+		public EntityPropertyDescAttribute(string dbName, bool isPk = false, bool toDelete = false)
 		{
-			Description = new DescriptionPart(dbName, isPk);
+			Description = new DescriptionPart(dbName, isPk, toDelete);
 		}
 
 		public DescriptionPart Description { get; set; }
@@ -18,9 +18,10 @@ namespace DBMS.Api
 
 	public class DescriptionPart
 	{
-		public DescriptionPart(string dbName, bool isPk)
+		public DescriptionPart(string dbName, bool isPk, bool toDelete)
 		{
 			DbName = dbName;
+			ToDelete = toDelete;
 			IsPK = isPk;
 		}
 
@@ -28,6 +29,7 @@ namespace DBMS.Api
 		/// Имя в БД
 		/// </summary>
 		public string DbName { get; set; }
+		public bool ToDelete { get; set; }
 
 		/// <summary>
 		/// Первичный-ли ключ

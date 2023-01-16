@@ -34,7 +34,7 @@
                             @Html.Raw("<br/>")
                         }
                     </td>
-                    <td class="info__table-column">@booking.SumPrice</td>
+                    <td class="info__table-column">@booking.SumPrice руб.</td>
                     <td class="info__table-column">@(booking.Reservation ? "Да" : "Нет")</td>
                 </tr>
             }
@@ -42,20 +42,20 @@
     </table>
 
     <br />
-    <form method="post">
+@*    <form method="post">
         <button asp-page-handler="UpdateSum" id="submit" class="itemButtonReview">Обновить сумму заказа</button>
-    </form>
+    </form>*@
 </div>
 
 <div class="forms_blocks">
 
     <form class="itemReviewForm" method="post">
-        Выберите апартаменты:
+        Выберите номер апартаментов:
         <select id="apartament_id" class="select_option" name="apartament_id" required>
             <option></option>
-            @foreach (var s in Model.Apartaments)
+            @foreach (var s in Model.Apartaments.Where(apartaments => apartaments.Id != Model.Bookings.Select(booking => booking.ApartamentId).Where(id => id == apartaments.Id).FirstOrDefault()))
             {
-                <option>@s.Id номер: @s.Number</option>
+                <option>Номер @s.Number</option>
             }
         </select>
 
@@ -64,15 +64,17 @@
             <option></option>
             @foreach (var s in Model.Clients)
             {
-                <option>@s.Id @s.SecondName @s.FirstName @s.ThirdName</option>
+                <option>@s.SecondName @s.FirstName @s.ThirdName</option>
             }
         </select>
 
-        <input type="date" name="firstdate" class="itemInputName" placeholder="Начальная дата" required />
-        <input type="date" name="enddate" class="itemInputName" placeholder="Конечная дата" required />
-        
+        Выберите начальную дату:
+        <input type="date" name="firstdate" class="itemInputName" required />
+        Выберите конечную дату:
+        <input type="date" name="enddate" class="itemInputName" required />
+
         Резерв по телефону:
-        <input type="checkbox" name="reservation" class="itemInputName" id="reservation"/>
+        <input type="text" name="reservation" class="itemInputName" placeholder="Да/Нет" required />
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
 
@@ -98,15 +100,15 @@
             }
         </select>
 
-        Выберите номер сервиса:
+        Выберите услугу:
         <select id="service_id" class="select_option" name="service_id" required>
             <option></option>
             @foreach (var s in Model.Services)
             {
-                <option>@s.Id @s.Name</option>
+                <option>@s.Name | Цена: @s.Price</option>
             }
         </select>
-        <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить сервис</button>
+        <button asp-page-handler="InsertService" id="submit" class="itemButtonReview">Добавить услугу</button>
     </form>
 
 </div>

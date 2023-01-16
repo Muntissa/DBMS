@@ -37,7 +37,7 @@
         <input type="text" name="secondname" class="itemInputName" placeholder="Фамилия" required />
         <input name="firstname" class="itemInputName" placeholder="Имя" required />
         <input name="thirdname" class="itemInputName" placeholder="Отчество" required />
-        <input name="number" class="itemInputName" placeholder="Телефон" required />
+        <input name="number" class="itemInputName" placeholder="+7 (___) ___-____" data-slots="_" required />
         <input name="email" class="itemInputName" placeholder="E-mail" required />
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
@@ -48,7 +48,7 @@
             <option></option>
             @foreach (var s in Model.Clients)
             {
-                <option>@s.Id</option>
+                <option>@s.SecondName @s.FirstName @s.ThirdName</option>
             }
         </select>
         <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>

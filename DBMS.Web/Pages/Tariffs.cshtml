@@ -8,7 +8,7 @@
     <table id="myTable" class="info__table">
         <thead>
             <tr class="info__table-row">
-                <th class="info__table-column">№</th>
+                <th class="info__table-column">Номер тарифа</th>
                 <th class="info__table-column">Название тарифа</th>
                 <th class="info__table-column">Описание тарифа</th>
                 <th class="info__table-column">Цена тарифа</th>
@@ -21,7 +21,7 @@
                     <td class="info__table-column">@tariff.Id</td>
                     <td class="info__table-column">@tariff.Name</td>
                     <td class="info__table-column">@tariff.Description</td>
-                    <td class="info__table-column">@tariff.Price</td>
+                    <td class="info__table-column">@tariff.Price руб.</td>
                 </tr>
             }
         </tbody>
@@ -32,7 +32,7 @@
     <form class="itemReviewForm" method="post">
         <input name="name" class="itemInputName" placeholder="Название" required />
         <input name="description" class="itemInputName" placeholder="Описание" required />
-        <input name="price" class="itemInputName" placeholder="Цена" required />
+        <input type="number" name="price" class="itemInputName" placeholder="Цена (руб.)" required />
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
 
@@ -42,7 +42,7 @@
             <option></option>
             @foreach (var s in Model.Tariffs)
             {
-                <option>@s.Id</option>
+                <option>@s.Name</option>
             }
         </select>
         <button asp-page-handler="Delete" id="submit" class="itemButtonReview">Удалить</button>
