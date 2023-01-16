@@ -14,5 +14,5 @@ C# Asp.Net Razor Pages, JavaScript datatables.net для менеджемент�
 
 # Экспорт/Импорт БД
 База данных находится на верхнем уровне проекта с расширением .bacpac
-Экспорт: Microsoft SQL SMS -> ПКМ по БД -> Tasks -> Export Data-tier Application.
-Импорт: Microsoft SQL SMS -> ПКМ по Databases -> Import Data-tier Application.
+1. Экспорт: Microsoft SQL SMS -> ПКМ по БД -> Tasks -> Export Data-tier Application;
+1. Импорт: Microsoft SQL SMS -> ПКМ по Databases -> Import Data-tier Application;
