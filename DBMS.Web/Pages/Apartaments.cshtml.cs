@@ -33,13 +33,13 @@ namespace SUBDCOURSE.Pages
             Apartaments = Context.LoadEntities<Apartament>();
         }
 
-        public void OnPostInsert(string tariff_id, int number, int area)
+        public void OnPostInsert(string tariff_id, int number, int area, string photo)
         {
             Context.Insert(new Apartament()
             {
                 TariffId = Convert.ToInt32(Tariffs.Where(tariff => tariff.Name.Trim() == tariff_id).Select(tarif => tarif.Id).First()),
                 Number = number,
-                ImageUrl = "./image/HotelPic1.jpg",
+                ImageUrl = "./image/" + photo,
                 Area = area,
                 Price = 0
             });

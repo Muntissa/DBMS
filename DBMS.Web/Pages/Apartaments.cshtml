@@ -10,7 +10,7 @@
                 <th class="info__table-column">Номер апартаментов</th>
                 <th class="info__table-column">Фото</th>
                 <th class="info__table-column">Название тарифа</th>
-                <th class="info__table-column">Номер апартаментов</th>
+                <th class="info__table-column">Номер (порядковый)</th>
                 <th class="info__table-column">Площадь</th>
                 <th class="info__table-column">Удобства</th>
                 <th class="info__table-column">Включенные услуги</th>
@@ -68,6 +68,7 @@
         </select>
         <input type="number" name="number" class="itemInputName" placeholder="Введите номер" required />
         <input type="number" name="area" class="itemInputName" placeholder="Введите площадь" required />
+        <input type="text" name="photo" class="itemInputName" placeholder="Введите название картинки" required />
 
         <button asp-page-handler="Insert" id="submit" class="itemButtonReview">Добавить</button>
     </form>
